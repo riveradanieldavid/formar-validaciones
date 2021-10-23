@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<body>
+	<%- include('../partials/header') %>
+	<main>
+		<div class="container">
+			<section>
+				<div class="columns is-centered">
+					<div class="column is-6">
+						<h1>Registro</h1>
+
+						<!-- MENSAJES DE VALIDACIÓN AGRUPADOS TODOS EN UN LUGAR-->
+						<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR
+						<% if (locals.errors ) { %>
+						<% errors.forEach(error => { %>
+							<p class="feedback is-danger"><%= error.msg %> </p>
+						<% }) %>
+						<% } %>
+						-->
+						<!-- MENSAJES DE VALIDACIÓN VISIBLE EN CADA input, UNO A LA VEZ, DESDE EL PRINCIPIO HASTA EL FINAL-->
+						<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR
+						<% if (locals.errors ) { %>
+							<p class="feedback is-danger">
+						<%= errors[0].param=='first_name' ?errors[0].msg : '' %>
+						</p>
+						<% } %>
+ 						-->
+						<!-- MENSAJES DE VALIDACIÓN VISIBLES DISTRIBUIDOS EN CADA input DE LA VISTA -->
+						<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR
+						<% if (locals.errors ) { %>
+						<% errors.forEach(error => { %>
+							<p class="feedback is-danger">
+						<%= error.param=='first_name' ?error.msg : null %>
+						</p>
+						<% }) %>
+						<% } %>
+						-->
+
+						<form action="/users" method="POST">
+
+							<div class="field">
+								<label for="first_name">Nombre</label>
+								<div class="control">
+
+									<input type="text" name="first_name" id="first_name"
+										value="<%= locals.old && old.first_name ? old.first_name : ''%>">
+									<!--				IF data old  Y    old 	 name       old.    name    imprimir-->
+									<!-- 					  RECORDAR VIEJO DATO INGRESADO EN input -->
+
+									<!-- MENSAJE DE VALIDACION -->
+									<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR -->
+									<% if (locals.errors ) { %>
+									<% errors.forEach(error => { %>
+									<p class="feedback is-danger">
+										<%= error.param=='first_name' ?error.msg : null %>
+									</p>
+									<% }) %>
+									<% } %>
+									<!-- MENSAJE DE VALIDACION/ -->
+
+								</div>
+								<p class="feedback"></p>
+							</div>
+
+							<div class="field">
+								<label for="last_name">Apellido</label>
+								<div class="control">
+
+									<input type="text" name="last_name" id="last_name"
+										value="<%= locals.old && old.last_name ? old.last_name : ''%>">
+									<!--				IF data old  Y    old 	 name       old.    name    imprimir-->
+									<!-- 					  RECORDAR VIEJO DATO INGRESADO EN input -->
+
+									<!-- MENSAJE DE VALIDACION -->
+									<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR -->
+									<% if (locals.errors ) { %>
+									<% errors.forEach(error => { %>
+									<p class="feedback is-danger">
+										<%= error.param=='last_name' ?error.msg : null %>
+									</p>
+									<% }) %>
+									<% } %>
+									<!-- MENSAJE DE VALIDACION/ -->
+
+								</div>
+								<p class="feedback"></p>
+							</div>
+
+							<div class="field">
+								<label for="email">Email</label>
+								<div class="control">
+
+									<input type="text" name="email" id="email"
+										value="<%= locals.old && old.email ? old.email : ''%>">
+									<!--				IF data old  Y    old 	 name       old.    name    imprimir-->
+									<!-- 					  RECORDAR VIEJO DATO INGRESADO EN input -->
+
+									<!-- MENSAJE DE VALIDACION -->
+									<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR -->
+									<% if (locals.errors ) { %>
+									<% errors.forEach(error => { %>
+									<p class="feedback is-danger">
+										<%= error.param=='email' ?error.msg : null %>
+									</p>
+									<% }) %>
+									<% } %>
+									<!-- MENSAJE DE VALIDACION/ -->
+
+								</div>
+								<p class="feedback"></p>
+							</div>
+
+							<div class="field">
+								<label for="password">Password</label>
+								<div class="control">
+
+									<input type="password" name="password" id="password" </div> <p class="feedback"></p>
+									<!-- NO ES PRUDENTE PERSISTIR LA VIEJA DATA INGRESADA EN ESTE input -->
+
+									<!-- MENSAJE DE VALIDACION -->
+									<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR -->
+									<% if (locals.errors ) { %>
+									<% errors.forEach(error => { %>
+									<p class="feedback is-danger">
+										<%= error.param=='password' ?error.msg : null %>
+									</p>
+									<% }) %>
+									<% } %>
+									<!-- MENSAJE DE VALIDACION/ -->
+
+								</div>
+
+								<div class="field">
+									<label for="category">Categoría</label>
+									<div class="control">
+
+										<select name="category" id="category">
+											<option value="">Seleccione una opción</option>
+											<!-- 									IF data old Y category old IGUAL 'vendedor' selected  -->
+											<option value="vendedor"
+												<%= locals.old && old.category==='vendedor' ? 'selected' : ''%>>Vendedor
+											</option>
+											<option value="comprador"
+												<%= locals.old && old.category==='comprador' ? 'selected' : ''%>>
+												Comprador</option>
+										</select>
+
+										<!-- MENSAJE DE VALIDACION -->
+										<!-- CONDICIONAL NECESARIO PARA MOSTRAR ERRORES SOLO SI LOS HAY, O CUANDO LOS HAYA. SINO MOSTRARÍA ERROR -->
+										<% if (locals.errors ) { %>
+										<% errors.forEach(error => { %>
+										<p class="feedback is-danger">
+											<%= error.param=='category' ?error.msg : null %>
+										</p>
+										<% }) %>
+										<% } %>
+										<!-- MENSAJE DE VALIDACION/ -->
+
+									</div>
+									<p class="feedback"></p>
+								</div>
+
+								<div class="field">
+									<div class="control">
+										<button type="submit">Crear usuario</button>
+									</div>
+								</div>
+						</form>
+
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+
+</html>
+
+<!-- 
+/*
+// REPASANDO ARRAYS XD!
+
+// ACEDIENDO CON ITERADOR
+// error = (errors[indices])  > LUEGO .NOMBRE INDICE > TIRA SU VALOR
+ 
+{
+    errorss = [
+        {
+            "value": "",
+            "msg": "Debes completar el campo de nombre",
+            "param": "first_name",
+            "location": "body"
+        },
+        {
+            "value": "",
+            "msg": "Debes completar el campo de apellido",
+            "param": "last_name",
+            "location": "body"
+        },
+        {
+            "value": "",
+            "msg": "Debes completar un email válido",
+            "param": "email",
+            "location": "body"
+        },
+        {
+            "value": "",
+            "msg": "Debes elegir una contraseña.",
+            "param": "password",
+            "location": "body"
+        },
+        {
+            "value": "",
+            "msg": "Debes elegir una categoría.",
+            "param": "category",
+            "location": "body"
+        }
+    ]
+}
+// ACCEDIENDO SIN ITERAR
+//                   NOMBRE[INDICE]+NOMBRE INDICE
+// console.log(errorss[0].msg);
+// PRINT: Debes completar el campo de nombre
+
+//ACCEDIENDO ITERANDO
+//INDICE + NOMBRE INDICE
+// index.msg
+ -->
